@@ -11,9 +11,6 @@ module.exports.create = async (req, res) => {
     });
     res.status(201).json(newUser);
   } catch (err) {
-    if (err.code === 11000) { // Código para errores de duplicados
-      return res.status(409).json({ message: "Duplicate entry", field: Object.keys(err.keyValue) });
-    }
     console.error("Users creation failed: " + err);
     const { status, message } = errorHandler(err);
     res.status(status).json({ message, entity: 'Users' });

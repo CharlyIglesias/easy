@@ -21,6 +21,10 @@ const createSchema = Joi.object({
     'any.required': 'Profile image URL is required',
     'string.uri': 'Profile image URL must be a valid URI'
   }),
+  password: Joi.string().required().messages({
+    'string.empty': 'Password is required',
+    'any.required': 'Password is required'
+  })
 });
 
 const loginSchema = Joi.object({

@@ -1,17 +1,18 @@
 const express = require('express');
-const { create, getAll, getById, getList, update, remove} = require('./catalog_products.controller');
+const { create, getAll, getById, getList, update, remove } = require('./catalog_products.controller');
+const { authenticateJWT } = require('../middleware/auth');
 const router = express.Router();
 
-router.post('/', create);
+router.post('/products', authenticateJWT, create);
 
-router.get('/', getAll);
+router.get('/products', authenticateJWT, getAll);
 
-router.get('/list', getList);
+router.get('/products/list', authenticateJWT, getList);
 
-router.get('/:id', getById);
+router.get('/products/:id', authenticateJWT, getById);
 
-router.put('/:id', update);
+router.put('/products/:id', authenticateJWT, update);
 
-router.delete('/:id', remove);
+router.delete('/products/:id', authenticateJWT, remove);
 
 module.exports = router;
